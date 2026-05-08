@@ -1,0 +1,11 @@
+services:
+  landing-page:
+    build: .
+    container_name: landing-page
+    restart: unless-stopped
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
