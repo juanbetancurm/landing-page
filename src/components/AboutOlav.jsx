@@ -10,9 +10,9 @@ const AboutOlav = () => {
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
       >
-        <span className="about-toggle-icon">🐱</span>
+        <span className="about-toggle-icon">i</span>
         <span>About Olav</span>
-        <span className={`about-chevron ${isOpen ? "open" : ""}`}>▾</span>
+        <span className={`about-chevron ${isOpen ? "open" : ""}`}>v</span>
       </button>
       {isOpen && (
         <div className="about-content">

@@ -6,21 +6,18 @@ const CategoryCard = ({ category }) => {
       to={category.path}
       className="category-card"
       style={{
-        backgroundColor: category.bgColor,
-        color: category.color,
+        "--accent-color": category.color,
+        "--accent-surface": category.bgColor,
       }}
     >
-      <div
-        className="category-icon"
-        style={{ backgroundColor: `${category.color}20` }}
-      >
+      <div className="category-icon">
         <span>{category.icon}</span>
       </div>
       <div className="category-info">
         <h2 className="category-name">{category.name}</h2>
         <p className="category-description">{category.description}</p>
       </div>
-      <span className="category-chevron">›</span>
+      <span className="category-chevron">{">"}</span>
     </Link>
   );
 };

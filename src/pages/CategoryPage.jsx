@@ -25,7 +25,7 @@ const CategoryPage = () => {
     <div className="page category-page">
       <nav className="category-nav">
         <Link to="/" className="back-link">
-          ← Back to home
+          {"<"} Back to home
         </Link>
       </nav>
 
@@ -33,8 +33,8 @@ const CategoryPage = () => {
         <div
           className="category-header-icon"
           style={{
-            backgroundColor: category.bgColor,
-            color: category.color,
+            "--accent-color": category.color,
+            "--accent-surface": category.bgColor,
           }}
         >
           <span>{category.icon}</span>
@@ -59,7 +59,7 @@ const CategoryPage = () => {
               <p className="project-description">{project.description}</p>
               <span className="project-status live">Live</span>
             </div>
-            <span className="project-external-icon">↗</span>
+            <span className="project-external-icon">{"->"}</span>
           </a>
         ))}
 
@@ -75,9 +75,7 @@ const CategoryPage = () => {
 
         {categoryProjects.length > 0 && (
           <div className="more-coming">
-            <p>
-              More {category.name.toLowerCase()} coming soon
-            </p>
+            <p>More {category.name.toLowerCase()} coming soon</p>
           </div>
         )}
       </main>
