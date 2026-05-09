@@ -10,6 +10,11 @@ const Home = () => {
         <div className="logo-placeholder">
           <img src={logo} alt="LabOlavs Logo" className="site-logo" />
         </div>
+        <h1 className="site-name">
+          <span style={{ color: "#ffffff" }}>Lab</span>
+          <span style={{ color: "#8c4dff" }}>Olavs</span>
+        </h1>
+        <p className="tagline">Learning tools for everyone</p>
       </header>
 
       <main className="categories-section">

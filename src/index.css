@@ -69,8 +69,8 @@ button {
 
 .hero {
   text-align: center;
-  padding: 0 0 28px;
-  margin-bottom: 18px;
+  padding: 0 0 16px;
+  margin-bottom: 10px;
 }
 
 .logo-placeholder {
@@ -90,7 +90,8 @@ button {
   display: block;
   width: 100%;
   height: auto;
-  max-height: 420px;
+  max-width: 200px;
+  max-height: 120px;
   object-fit: contain;
 }
 
@@ -646,7 +647,7 @@ button {
   }
 
   .site-logo {
-    max-height: 260px;
+    max-height: 80px;
   }
 
   .site-name {
@@ -677,11 +678,10 @@ button {
   }
 
   .footer-toggle {
-    align-items: flex-start;
-    flex-wrap: wrap;
+    align-items: center;
   }
 
-  .footer-toggle-hint {
-    margin-left: auto;
+  .footer-toggle-copy span {
+    display: none;
   }
 }
