@@ -1,16 +1,28 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import CategoryPage from "./pages/CategoryPage";
+import ThemeToggle from "./components/ThemeToggle";
+import { ThemeProvider, useThemeContext } from "./context/ThemeContext";
 
-const App = () => {
+const AppContent = () => {
+  const { theme, toggle } = useThemeContext();
   return (
-    <BrowserRouter>
+    <>
+      <ThemeToggle theme={theme} onToggle={toggle} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/category/:categoryId" element={<CategoryPage />} />
       </Routes>
-    </BrowserRouter>
+    </>
   );
 };
+
+const App = () => (
+  <BrowserRouter>
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
+  </BrowserRouter>
+);
 
 export default App;
