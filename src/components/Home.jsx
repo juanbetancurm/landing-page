@@ -15,7 +15,7 @@ const Home = () => {
           <img
             src={theme === "dark" ? logoDark : logoLight}
             alt="LabOlavs Logo"
-            className="site-logo"
+            className={`site-logo ${theme === "dark" ? "site-logo-dark" : "site-logo-light"}`}
           />
         </div>
         <h1 className="site-name">
