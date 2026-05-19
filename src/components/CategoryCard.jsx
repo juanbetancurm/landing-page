@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import CategoryVisualIcon from "./CategoryVisualIcon";
 
 const CategoryCard = ({ category }) => {
+  const hasCustomIcon = Boolean(category.cardIcon);
+
   return (
     <Link
       to={category.path}
@@ -10,8 +13,10 @@ const CategoryCard = ({ category }) => {
         "--accent-surface": category.bgColor,
       }}
     >
-      <div className="category-icon">
-        <span>{category.icon}</span>
+      <div
+        className={`category-icon ${hasCustomIcon ? "category-icon-custom" : ""}`}
+      >
+        <CategoryVisualIcon category={category} />
       </div>
       <div className="category-info">
         <h2 className="category-name">{category.name}</h2>

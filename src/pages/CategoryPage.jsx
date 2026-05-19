@@ -1,25 +1,13 @@
 import { useParams, Link } from "react-router-dom";
 import { categories, projects } from "../data/projects";
+import CategoryVisualIcon from "../components/CategoryVisualIcon";
 import Footer from "../components/Footer";
-
-const DnaProjectIcon = () => (
-  <svg viewBox="0 0 64 64" role="img" aria-label="DNA strand">
-    <path
-      className="dna-strand dna-strand-teal"
-      d="M20 4 C23 17 38 20 41 32 C44 44 23 47 20 60"
-    />
-    <path
-      className="dna-strand dna-strand-red"
-      d="M44 4 C41 17 26 20 23 32 C20 44 41 47 44 60"
-    />
-    <path className="dna-bridge dna-bridge-top" d="M25 17 L39 25" />
-    <path className="dna-bridge dna-bridge-mid" d="M20 32 L44 32" />
-    <path className="dna-bridge dna-bridge-bottom" d="M25 47 L39 39" />
-  </svg>
-);
+import dnaIcon from "../assets/icons/dna_icon.png";
+import mazeIcon from "../assets/icons/maze_icon.png";
 
 const projectIcons = {
-  dna: <DnaProjectIcon />,
+  dna: dnaIcon,
+  maze: mazeIcon,
 };
 
 const CategoryPage = () => {
@@ -40,6 +28,7 @@ const CategoryPage = () => {
   const categoryProjects = projects.filter(
     (project) => project.category === categoryId
   );
+  const hasCustomCategoryIcon = Boolean(category.cardIcon);
 
   return (
     <div className="page category-page">
@@ -51,13 +40,15 @@ const CategoryPage = () => {
 
       <header className="category-header">
         <div
-          className="category-header-icon"
+          className={`category-header-icon ${
+            hasCustomCategoryIcon ? "category-icon-custom" : ""
+          }`}
           style={{
             "--accent-color": category.color,
             "--accent-surface": category.bgColor,
           }}
         >
-          <span>{category.icon}</span>
+          <CategoryVisualIcon category={category} />
         </div>
         <div>
           <h1 className="category-title">{category.name}</h1>
@@ -75,7 +66,14 @@ const CategoryPage = () => {
             className="project-card"
           >
             {projectIcons[project.icon] && (
-              <div className="project-icon">{projectIcons[project.icon]}</div>
+              <div className="project-icon">
+                <img
+                  src={projectIcons[project.icon]}
+                  alt=""
+                  className="project-icon-image"
+                  draggable="false"
+                />
+              </div>
             )}
             <div className="project-info">
               <h2 className="project-title">{project.title}</h2>

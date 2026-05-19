@@ -3,6 +3,7 @@ export const categories = [
     id: "games",
     name: "Games",
     description: "Browser-based educational games",
+    cardIcon: "games",
     icon: "🎮",
     color: "#0F6E56",
     bgColor: "#E1F5EE",
@@ -12,6 +13,7 @@ export const categories = [
     id: "education",
     name: "Education",
     description: "Courses, explanations, and worksheets",
+    cardIcon: "education",
     icon: "🎓",
     color: "#185FA5",
     bgColor: "#E6F1FB",
@@ -21,6 +23,7 @@ export const categories = [
     id: "apps",
     name: "Apps",
     description: "Tools and utilities for everyday use",
+    cardIcon: "apps",
     icon: "⚡",
     color: "#534AB7",
     bgColor: "#EEEDFE",
@@ -32,6 +35,7 @@ export const projects = [
   {
     id: "anglemaze",
     title: "AngleMaze",
+    icon: "maze",
     description:
       "Navigate mazes using angle concepts. A geometry challenge for students.",
     category: "games",
