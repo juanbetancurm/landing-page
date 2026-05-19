@@ -234,7 +234,8 @@ button {
 }
 
 .category-icon,
-.category-header-icon {
+.category-header-icon,
+.project-icon {
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -264,6 +265,53 @@ button {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.6)),
     color-mix(in srgb, var(--accent-color) 15%, rgba(242, 247, 255, 0.95));
+}
+
+.project-icon {
+  width: 64px;
+  height: 64px;
+  padding: 10px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.62)),
+    rgba(230, 241, 251, 0.86);
+}
+
+.project-icon svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.dna-strand,
+.dna-bridge {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.dna-strand {
+  stroke-width: 4.6;
+}
+
+.dna-strand-teal {
+  stroke: #20bfc7;
+}
+
+.dna-strand-red {
+  stroke: #f32d25;
+}
+
+.dna-bridge {
+  stroke-width: 3.4;
+  opacity: 0.96;
+}
+
+.dna-bridge-top,
+.dna-bridge-bottom {
+  stroke: #123b53;
+}
+
+.dna-bridge-mid {
+  stroke: #185fa5;
 }
 
 .category-info,
@@ -739,7 +787,8 @@ button {
 }
 
 [data-theme="dark"] .category-icon,
-[data-theme="dark"] .category-header-icon {
+[data-theme="dark"] .category-header-icon,
+[data-theme="dark"] .project-icon {
   border-color: rgba(191, 219, 254, 0.16);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.12),
@@ -747,6 +796,21 @@ button {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
     color-mix(in srgb, var(--accent-color) 22%, rgba(7, 17, 31, 0.92));
+}
+
+[data-theme="dark"] .project-icon {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
+    rgba(15, 39, 66, 0.78);
+}
+
+[data-theme="dark"] .dna-bridge-top,
+[data-theme="dark"] .dna-bridge-bottom {
+  stroke: #dbeafe;
+}
+
+[data-theme="dark"] .dna-bridge-mid {
+  stroke: #93c5fd;
 }
 
 [data-theme="dark"] .category-chevron,
@@ -890,6 +954,11 @@ button {
   .project-card,
   .category-header {
     flex-wrap: wrap;
+  }
+
+  .project-icon {
+    width: 58px;
+    height: 58px;
   }
 
   .category-chevron,

@@ -38,4 +38,14 @@ export const projects = [
     status: "live",
     url: "https://anglemaze.labolavs.com",
   },
+  {
+    id: "dna-translation-laboratory",
+    title: "DNA Translation Laboratory",
+    icon: "dna",
+    description:
+      "Explore how DNA is translated into proteins through an interactive laboratory with a mutations simulator.",
+    category: "education",
+    status: "live",
+    url: "https://translation.labolavs.com",
+  },
 ];
