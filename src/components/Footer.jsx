@@ -1,4 +1,5 @@
 import { useState } from "react";
+import openIcon from "../assets/icons/open_icon.png";
 
 const GitHubIcon = () => (
   <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -31,30 +32,33 @@ const Footer = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <footer className="footer">
+    <footer className="footer" data-guide="about">
       <div className="footer-dropdown">
         <button
           className="footer-toggle"
+          data-guide="about-open"
           onClick={() => setIsOpen(!isOpen)}
           aria-expanded={isOpen}
         >
           <span className="footer-toggle-badge">Connect</span>
           <span className="footer-toggle-copy">
-            <strong>About Olav</strong>
+            <strong>More on the creator</strong>
             <span>
-              Software developer and educator building tools to help teachers,
+              A software developer and educator building tools to help teachers,
               students, and the curious. Open to view profile links.
             </span>
           </span>
           <span className="footer-toggle-hint">
             <span>Open</span>
-            <span className={`footer-chevron ${isOpen ? "open" : ""}`}>v</span>
+            <span className={`footer-chevron ${isOpen ? "open" : ""}`}>
+              <img src={openIcon} alt="" draggable="false" />
+            </span>
           </span>
         </button>
 
         <div className={`footer-panel ${isOpen ? "open" : "closed"}`}>
           <div className="footer-panel-inner">
-            <p className="footer-legend">Find Olav around the web</p>
+            <p className="footer-legend">Find the creator around the web</p>
             <div className="footer-links">
               <a
                 href="https://github.com/juanbetancurm"

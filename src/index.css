@@ -446,9 +446,21 @@ button {
 }
 
 .footer-chevron {
-  font-size: 1rem;
-  color: #2563eb;
-  transition: transform var(--craft-transition), color var(--craft-transition);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  transition: transform var(--craft-transition);
+}
+
+.footer-chevron img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
 }
 
 .footer-chevron.open {
@@ -689,6 +701,204 @@ button {
   border-color: rgba(37, 99, 235, 0.35);
 }
 
+.guide-help-button {
+  position: fixed;
+  top: 70px;
+  right: 18px;
+  z-index: 110;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--craft-radius-pill);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  color: #2563eb;
+  box-shadow: 0 4px 16px rgba(29, 78, 216, 0.14);
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1;
+  transition:
+    background var(--craft-transition),
+    border-color var(--craft-transition),
+    box-shadow var(--craft-transition),
+    transform var(--craft-transition);
+}
+
+.guide-help-button:hover {
+  transform: scale(1.08);
+  background: rgba(255, 255, 255, 0.98);
+  border-color: rgba(37, 99, 235, 0.35);
+  box-shadow: 0 8px 24px rgba(29, 78, 216, 0.2);
+}
+
+.guide-help-button:focus-visible,
+.guide-button:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.38);
+  outline-offset: 3px;
+}
+
+.guide-layer {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.guide-layer.active {
+  display: block;
+}
+
+.guide-scrim {
+  position: fixed;
+  inset: 0;
+  background: rgba(9, 18, 34, 0.18);
+  pointer-events: auto;
+}
+
+.guide-ring {
+  position: fixed;
+  border-radius: 24px;
+  border: 3px solid #2f80ed;
+  box-shadow:
+    0 0 0 6px rgba(47, 128, 237, 0.16),
+    0 14px 38px rgba(47, 128, 237, 0.25);
+  pointer-events: none;
+  z-index: 10000;
+}
+
+.guide-message {
+  position: fixed;
+  width: min(300px, calc(100vw - 32px));
+  padding: 16px;
+  border-radius: 22px;
+  border: 1px solid #d7e4f6;
+  background: #ffffff;
+  color: #102034;
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.25);
+  pointer-events: auto;
+  z-index: 10001;
+}
+
+.guide-message::after {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background: inherit;
+  border: 1px solid #d7e4f6;
+  transform: rotate(45deg);
+  z-index: -1;
+}
+
+.guide-message.arrow-top::after {
+  top: -11px;
+  left: var(--arrow-left, 50%);
+  margin-left: -11px;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.guide-message.arrow-bottom::after {
+  bottom: -11px;
+  left: var(--arrow-left, 50%);
+  margin-left: -11px;
+  border-top: 0;
+  border-left: 0;
+}
+
+.guide-message.arrow-right::after {
+  right: -11px;
+  top: var(--arrow-top, 50%);
+  margin-top: -11px;
+  border-left: 0;
+  border-bottom: 0;
+}
+
+.guide-message.arrow-left::after {
+  left: -11px;
+  top: var(--arrow-top, 50%);
+  margin-top: -11px;
+  border-right: 0;
+  border-top: 0;
+}
+
+.guide-step-count {
+  margin-bottom: 8px;
+  color: #2563eb;
+  font-size: 0.76rem;
+  font-weight: 800;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.guide-message h3 {
+  margin-bottom: 8px;
+  color: #102034;
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.guide-message p {
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.guide-controls {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.guide-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 12px;
+  border-radius: var(--craft-radius-pill);
+  border: 1px solid rgba(37, 99, 235, 0.18);
+  font-size: 0.84rem;
+  font-weight: 800;
+  line-height: 1.1;
+  text-align: center;
+  transition:
+    background var(--craft-transition),
+    border-color var(--craft-transition),
+    color var(--craft-transition),
+    transform var(--craft-transition);
+}
+
+.guide-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.guide-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.guide-button-primary {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+}
+
+.guide-button-secondary {
+  background: rgba(37, 99, 235, 0.1);
+  color: #1d4ed8;
+}
+
+.guide-button-ghost {
+  background: transparent;
+  color: #58708f;
+}
+
 /* ── Dark theme overrides ───────────────────────────────────────── */
 
 [data-theme="dark"] {
@@ -713,6 +923,58 @@ button {
   background: rgba(15, 39, 66, 0.98);
   border-color: rgba(96, 165, 250, 0.4);
   box-shadow: 0 8px 24px rgba(4, 0, 12, 0.5);
+}
+
+[data-theme="dark"] .guide-help-button {
+  background: rgba(11, 27, 48, 0.85);
+  border-color: rgba(96, 165, 250, 0.22);
+  color: #bfdbfe;
+  box-shadow: 0 4px 16px rgba(4, 0, 12, 0.4);
+}
+
+[data-theme="dark"] .guide-help-button:hover {
+  background: rgba(15, 39, 66, 0.98);
+  border-color: rgba(96, 165, 250, 0.4);
+  box-shadow: 0 8px 24px rgba(4, 0, 12, 0.5);
+}
+
+[data-theme="dark"] .guide-scrim {
+  background: rgba(3, 8, 18, 0.34);
+}
+
+[data-theme="dark"] .guide-message {
+  background: #0b1b30;
+  border-color: rgba(191, 219, 254, 0.18);
+  color: #edf5ff;
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.48);
+}
+
+[data-theme="dark"] .guide-message::after {
+  border-color: rgba(191, 219, 254, 0.18);
+}
+
+[data-theme="dark"] .guide-step-count {
+  color: #bfdbfe;
+}
+
+[data-theme="dark"] .guide-message h3 {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .guide-button-primary {
+  background: #3b82f6;
+  border-color: #3b82f6;
+}
+
+[data-theme="dark"] .guide-button-secondary {
+  background: rgba(59, 130, 246, 0.18);
+  border-color: rgba(191, 219, 254, 0.16);
+  color: #dbeafe;
+}
+
+[data-theme="dark"] .guide-button-ghost {
+  border-color: rgba(191, 219, 254, 0.12);
+  color: #abc0db;
 }
 
 [data-theme="dark"] .site-name {
@@ -876,6 +1138,13 @@ button {
   background: linear-gradient(180deg, rgba(11, 27, 48, 0.96), rgba(7, 17, 31, 0.98));
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .guide-help-button,
+  .guide-button {
+    transition: none;
+  }
+}
+
 @media (max-width: 760px) {
   .page {
     padding: 20px 16px 44px;
@@ -955,5 +1224,20 @@ button {
 
   .footer-toggle-copy span {
     display: none;
+  }
+
+  .guide-message {
+    width: min(300px, calc(100vw - 28px));
+    padding: 15px;
+  }
+
+  .guide-controls {
+    gap: 7px;
+  }
+
+  .guide-button {
+    min-height: 44px;
+    padding: 0 8px;
+    font-size: 0.82rem;
   }
 }

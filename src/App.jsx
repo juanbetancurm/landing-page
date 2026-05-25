@@ -1,11 +1,15 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Home from "./components/Home";
 import CategoryPage from "./pages/CategoryPage";
+import IntroGuide from "./components/IntroGuide";
 import ThemeToggle from "./components/ThemeToggle";
-import { ThemeProvider, useThemeContext } from "./context/ThemeContext";
+import { ThemeProvider } from "./context/ThemeContext";
+import { useThemeContext } from "./hooks/useThemeContext";
 
 const AppContent = () => {
   const { theme, toggle } = useThemeContext();
+  const location = useLocation();
+
   return (
     <>
       <ThemeToggle theme={theme} onToggle={toggle} />
@@ -13,6 +17,7 @@ const AppContent = () => {
         <Route path="/" element={<Home />} />
         <Route path="/category/:categoryId" element={<CategoryPage />} />
       </Routes>
+      {location.pathname === "/" && <IntroGuide />}
     </>
   );
 };

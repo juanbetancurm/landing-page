@@ -27,6 +27,7 @@ const MoonIcon = () => (
 const ThemeToggle = ({ theme, onToggle }) => (
   <button
     className="theme-toggle"
+    data-guide="theme"
     onClick={onToggle}
     aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
     title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}

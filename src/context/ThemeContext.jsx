@@ -1,7 +1,5 @@
-import { createContext, useContext } from "react";
 import { useTheme } from "../hooks/useTheme";
-
-export const ThemeContext = createContext(null);
+import { ThemeContext } from "./themeContextValue";
 
 export const ThemeProvider = ({ children }) => {
   const [theme, toggle] = useTheme();
@@ -11,5 +9,3 @@ export const ThemeProvider = ({ children }) => {
     </ThemeContext.Provider>
   );
 };
-
-export const useThemeContext = () => useContext(ThemeContext);
