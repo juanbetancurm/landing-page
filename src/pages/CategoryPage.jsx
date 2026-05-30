@@ -1,7 +1,8 @@
 import { useParams, Link } from "react-router-dom";
-import { categories, projects } from "../data/projects";
+import { getLocalizedCategories, getLocalizedProjects } from "../data/projects";
 import CategoryVisualIcon from "../components/CategoryVisualIcon";
 import Footer from "../components/Footer";
+import { useLanguageContext } from "../hooks/useLanguageContext";
 import dnaIcon from "../assets/icons/dna_icon.png";
 import mazeIcon from "../assets/icons/maze_icon.png";
 
@@ -12,14 +13,17 @@ const projectIcons = {
 
 const CategoryPage = () => {
   const { categoryId } = useParams();
+  const { language, t } = useLanguageContext();
+  const categories = getLocalizedCategories(language);
+  const projects = getLocalizedProjects(language);
   const category = categories.find((cat) => cat.id === categoryId);
 
   if (!category) {
     return (
       <div className="page not-found-page">
-        <h1>Category not found</h1>
+        <h1>{t("categoryPage.notFound")}</h1>
         <Link to="/" className="back-link">
-          Back to home
+          {t("categoryPage.backHome")}
         </Link>
       </div>
     );
@@ -29,12 +33,13 @@ const CategoryPage = () => {
     (project) => project.category === categoryId
   );
   const hasCustomCategoryIcon = Boolean(category.cardIcon);
+  const categoryNameLower = category.name.toLocaleLowerCase(language);
 
   return (
     <div className="page category-page">
       <nav className="category-nav">
         <Link to="/" className="back-link">
-          {"<"} Back to home
+          <span aria-hidden="true">{"<"}</span> {t("categoryPage.backHome")}
         </Link>
       </nav>
 
@@ -78,7 +83,9 @@ const CategoryPage = () => {
             <div className="project-info">
               <h2 className="project-title">{project.title}</h2>
               <p className="project-description">{project.description}</p>
-              <span className="project-status live">Live</span>
+              <span className="project-status live">
+                {t("categoryPage.live")}
+              </span>
             </div>
             <span className="project-external-icon">{"->"}</span>
           </a>
@@ -86,17 +93,22 @@ const CategoryPage = () => {
 
         {categoryProjects.length === 0 && (
           <div className="empty-category">
-            <p>Coming soon</p>
+            <p>{t("categoryPage.comingSoon")}</p>
             <p className="empty-subtitle">
-              New {category.name.toLowerCase()} will appear here as they are
-              deployed.
+              {t("categoryPage.emptyCategory", {
+                category: categoryNameLower,
+              })}
             </p>
           </div>
         )}
 
         {categoryProjects.length > 0 && (
           <div className="more-coming">
-            <p>More {category.name.toLowerCase()} coming soon</p>
+            <p>
+              {t("categoryPage.moreComing", {
+                category: categoryNameLower,
+              })}
+            </p>
           </div>
         )}
       </main>

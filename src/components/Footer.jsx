@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLanguageContext } from "../hooks/useLanguageContext";
 import openIcon from "../assets/icons/open_icon.png";
 
 const GitHubIcon = () => (
@@ -30,6 +31,7 @@ const CvIcon = () => (
 
 const Footer = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useLanguageContext();
 
   return (
     <footer className="footer" data-guide="about">
@@ -40,16 +42,13 @@ const Footer = () => {
           onClick={() => setIsOpen(!isOpen)}
           aria-expanded={isOpen}
         >
-          <span className="footer-toggle-badge">Connect</span>
+          <span className="footer-toggle-badge">{t("footer.badge")}</span>
           <span className="footer-toggle-copy">
-            <strong>More on the creator</strong>
-            <span>
-              A software developer and educator building tools to help teachers,
-              students, and the curious. Open to view profile links.
-            </span>
+            <strong>{t("footer.title")}</strong>
+            <span>{t("footer.description")}</span>
           </span>
           <span className="footer-toggle-hint">
-            <span>Open</span>
+            <span>{t("footer.open")}</span>
             <span className={`footer-chevron ${isOpen ? "open" : ""}`}>
               <img src={openIcon} alt="" draggable="false" />
             </span>
@@ -58,40 +57,40 @@ const Footer = () => {
 
         <div className={`footer-panel ${isOpen ? "open" : "closed"}`}>
           <div className="footer-panel-inner">
-            <p className="footer-legend">Find the creator around the web</p>
+            <p className="footer-legend">{t("footer.legend")}</p>
             <div className="footer-links">
               <a
                 href="https://github.com/juanbetancurm"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="GitHub"
+                aria-label={t("footer.github")}
               >
                 <span className="footer-link-icon">
                   <GitHubIcon />
                 </span>
-                <span>GitHub</span>
+                <span>{t("footer.github")}</span>
               </a>
               <a
                 href="https://www.linkedin.com/in/juanjbetancur852/"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="LinkedIn"
+                aria-label={t("footer.linkedin")}
               >
                 <span className="footer-link-icon">
                   <LinkedInIcon />
                 </span>
-                <span>LinkedIn</span>
+                <span>{t("footer.linkedin")}</span>
               </a>
               <a
                 href="https://juanbetancurm.github.io/cv2026/"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="CV"
+                aria-label={t("footer.cv")}
               >
                 <span className="footer-link-icon">
                   <CvIcon />
                 </span>
-                <span>CV</span>
+                <span>{t("footer.cv")}</span>
               </a>
             </div>
           </div>

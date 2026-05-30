@@ -1,8 +1,27 @@
+const localizedValue = (value, language) => {
+  if (typeof value === "string") return value;
+  return value[language] ?? value.en;
+};
+
+const localizeItem = (item, language) =>
+  Object.fromEntries(
+    Object.entries(item).map(([key, value]) => [
+      key,
+      localizedValue(value, language),
+    ])
+  );
+
 export const categories = [
   {
     id: "games",
-    name: "Games",
-    description: "Browser-based educational games",
+    name: {
+      en: "Games",
+      es: "Juegos",
+    },
+    description: {
+      en: "Educational games to reinforce the concepts.",
+      es: "Juegos educativos para reforzar los conceptos.",
+    },
     cardIcon: "games",
     icon: "🎮",
     color: "#0F6E56",
@@ -11,8 +30,14 @@ export const categories = [
   },
   {
     id: "education",
-    name: "Education",
-    description: "Courses, explanations, and worksheets",
+    name: {
+      en: "Education",
+      es: "Educación",
+    },
+    description: {
+      en: "Explanations, simulations, and worksheets.",
+      es: "Explicaciones, simulaciones y hojas de trabajo.",
+    },
     cardIcon: "education",
     icon: "🎓",
     color: "#185FA5",
@@ -21,8 +46,14 @@ export const categories = [
   },
   {
     id: "apps",
-    name: "Apps",
-    description: "Tools and utilities for everyday use",
+    name: {
+      en: "Apps",
+      es: "Aplicaciones",
+    },
+    description: {
+      en: "Tools and utilities for everyday use.",
+      es: "Herramientas y utilidades para el uso diario.",
+    },
     cardIcon: "apps",
     icon: "⚡",
     color: "#534AB7",
@@ -34,22 +65,38 @@ export const categories = [
 export const projects = [
   {
     id: "anglemaze",
-    title: "AngleMaze",
+    title: {
+      en: "AngleMaze",
+      es: "AngleMaze",
+    },
     icon: "maze",
-    description:
-      "Navigate mazes using angle concepts. A geometry challenge for students.",
+    description: {
+      en: "Navigate mazes using angle concepts. A geometry challenge for students.",
+      es: "Navega laberintos usando conceptos de ángulos. Un reto de geometría para estudiantes.",
+    },
     category: "games",
     status: "live",
     url: "https://anglemaze.labolavs.com",
   },
   {
     id: "dna-translation-laboratory",
-    title: "DNA Translation Laboratory",
+    title: {
+      en: "DNA Translation Laboratory",
+      es: "Laboratorio de Traducción de ADN",
+    },
     icon: "dna",
-    description:
-      "Explore how DNA is translated into proteins through an interactive laboratory with a mutations simulator.",
+    description: {
+      en: "Explore how DNA is translated into proteins through an interactive laboratory with a mutations simulator.",
+      es: "Explora cómo el ADN se traduce en proteínas mediante un laboratorio interactivo con un simulador de mutaciones.",
+    },
     category: "education",
     status: "live",
     url: "https://translation.labolavs.com",
   },
 ];
+
+export const getLocalizedCategories = (language) =>
+  categories.map((category) => localizeItem(category, language));
+
+export const getLocalizedProjects = (language) =>
+  projects.map((project) => localizeItem(project, language));

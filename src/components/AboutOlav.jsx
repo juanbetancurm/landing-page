@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useLanguageContext } from "../hooks/useLanguageContext";
 
 const AboutOlav = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useLanguageContext();
 
   return (
     <section className="about-section">
@@ -11,15 +13,12 @@ const AboutOlav = () => {
         aria-expanded={isOpen}
       >
         <span className="about-toggle-icon">i</span>
-        <span>About Olav</span>
+        <span>{t("aboutOlav.title")}</span>
         <span className={`about-chevron ${isOpen ? "open" : ""}`}>v</span>
       </button>
       {isOpen && (
         <div className="about-content">
-          <p>
-            Software developer and educator building tools to help teachers,
-            students, and the curious.
-          </p>
+          <p>{t("aboutOlav.description")}</p>
         </div>
       )}
     </section>

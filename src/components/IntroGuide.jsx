@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { guideSteps } from "../data/guideSteps";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { getLocalizedGuideSteps } from "../data/guideSteps";
+import { useLanguageContext } from "../hooks/useLanguageContext";
 
 const GUIDE_STORAGE_KEY = "labolavs_landing_guide_status";
 const GUIDE_REVEAL_DELAY = 320;
@@ -141,9 +142,12 @@ const buildGuideLayout = (rect, preferredPlacement, messageElement) => {
 const getFocusableGuideButtons = (messageElement) =>
   Array.from(messageElement?.querySelectorAll("button:not(:disabled)") ?? []);
 
-const countedGuideStepTotal = guideSteps.filter((step) => !step.isIntro).length;
-
 const IntroGuide = () => {
+  const { language, t } = useLanguageContext();
+  const guideSteps = useMemo(
+    () => getLocalizedGuideSteps(language),
+    [language]
+  );
   const [isActive, setIsActive] = useState(false);
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [layout, setLayout] = useState(null);
@@ -156,6 +160,7 @@ const IntroGuide = () => {
   const currentStep = guideSteps[currentStepIndex];
   const isFirstStep = currentStepIndex === 0;
   const isFinalStep = currentStepIndex === guideSteps.length - 1;
+  const countedGuideStepTotal = guideSteps.filter((step) => !step.isIntro).length;
   const showStepCount = !currentStep.isIntro;
   const countedStepNumber = guideSteps
     .slice(0, currentStepIndex + 1)
@@ -180,7 +185,7 @@ const IntroGuide = () => {
     if (typeof step?.afterStep === "function") {
       step.afterStep();
     }
-  }, [currentStepIndex]);
+  }, [currentStepIndex, guideSteps]);
 
   const closeGuide = useCallback(
     (status) => {
@@ -218,7 +223,7 @@ const IntroGuide = () => {
     runAfterStep();
     setLayout(null);
     setCurrentStepIndex((index) => Math.min(index + 1, guideSteps.length - 1));
-  }, [closeGuide, isFinalStep, runAfterStep]);
+  }, [closeGuide, guideSteps.length, isFinalStep, runAfterStep]);
 
   const moveToPreviousStep = useCallback(() => {
     if (isFirstStep) return;
@@ -230,6 +235,8 @@ const IntroGuide = () => {
 
   const positionCurrentStep = useCallback(() => {
     const step = guideSteps[currentStepIndex];
+    if (!step) return;
+
     const target = document.querySelector(step.target);
     const messageElement = messageRef.current;
 
@@ -246,7 +253,7 @@ const IntroGuide = () => {
     }
 
     setLayout(buildGuideLayout(rect, step.placement, messageElement));
-  }, [currentStepIndex, moveToNextStep]);
+  }, [currentStepIndex, guideSteps, moveToNextStep]);
 
   useEffect(() => {
     if (autoStartedRef.current || getGuideStatus() !== null) return;
@@ -265,6 +272,8 @@ const IntroGuide = () => {
     if (!isActive) return;
 
     const step = guideSteps[currentStepIndex];
+    if (!step) return;
+
     const target = document.querySelector(step.target);
 
     if (typeof step.beforeStep === "function") {
@@ -289,7 +298,13 @@ const IntroGuide = () => {
     );
 
     return () => window.clearTimeout(revealTimerRef.current);
-  }, [currentStepIndex, isActive, moveToNextStep, positionCurrentStep]);
+  }, [
+    currentStepIndex,
+    guideSteps,
+    isActive,
+    moveToNextStep,
+    positionCurrentStep,
+  ]);
 
   useEffect(() => {
     if (!isActive) return undefined;
@@ -371,8 +386,8 @@ const IntroGuide = () => {
         className="guide-help-button"
         data-guide="help"
         type="button"
-        aria-label="Open introduction guide"
-        title="Open guide"
+        aria-label={t("guide.helpLabel")}
+        title={t("guide.helpTitle")}
         onClick={(event) => startGuide(event.currentTarget)}
       >
         ?
@@ -401,15 +416,16 @@ const IntroGuide = () => {
               }}
               role="dialog"
               aria-modal="true"
-              aria-label={
-                currentStep.isIntro ? "LabOlavs introduction" : undefined
-              }
+              aria-label={currentStep.isIntro ? t("guide.introLabel") : undefined}
               aria-labelledby={currentStep.isIntro ? undefined : "guide-title"}
               aria-describedby="guide-text"
             >
               {showStepCount && (
                 <p className="guide-step-count">
-                  Step {countedStepNumber} of {countedGuideStepTotal}
+                  {t("guide.stepCount", {
+                    current: countedStepNumber,
+                    total: countedGuideStepTotal,
+                  })}
                 </p>
               )}
               {!currentStep.isIntro && (
@@ -423,14 +439,14 @@ const IntroGuide = () => {
                   onClick={moveToPreviousStep}
                   disabled={isFirstStep}
                 >
-                  Back
+                  {t("guide.back")}
                 </button>
                 <button
                   type="button"
                   className="guide-button guide-button-ghost"
                   onClick={() => closeGuide("skipped")}
                 >
-                  Skip
+                  {t("guide.skip")}
                 </button>
                 <button
                   ref={nextButtonRef}
@@ -438,7 +454,7 @@ const IntroGuide = () => {
                   className="guide-button guide-button-primary"
                   onClick={moveToNextStep}
                 >
-                  {isFinalStep ? "Finish" : "Next"}
+                  {isFinalStep ? t("guide.finish") : t("guide.next")}
                 </button>
               </div>
             </section>

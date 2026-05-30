@@ -7,8 +7,15 @@
     <title>LabOlavs — Learning tools for everyone</title>
     <script>
       (function () {
-        var t = localStorage.getItem("theme") || "light";
-        document.documentElement.setAttribute("data-theme", t);
+        var theme = localStorage.getItem("theme") || "light";
+        var language = localStorage.getItem("labolavs_language") || "en";
+        var isSpanish = language === "es";
+
+        document.documentElement.setAttribute("data-theme", theme);
+        document.documentElement.lang = isSpanish ? "es" : "en";
+        document.title = isSpanish
+          ? "LabOlavs — Herramientas de aprendizaje para todos"
+          : "LabOlavs — Learning tools for everyone";
       })();
     </script>
   </head>
