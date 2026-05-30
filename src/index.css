@@ -102,7 +102,7 @@ button {
 }
 
 .site-name {
-  max-width: 10ch;
+  width: min(100%, 10ch);
   margin: 0 auto 12px;
   font-size: clamp(3.2rem, 8vw, 5.8rem);
   line-height: 0.95;
@@ -121,7 +121,7 @@ button {
 }
 
 .tagline {
-  max-width: 32rem;
+  width: min(100%, 32rem);
   margin: 0 auto;
   font-size: clamp(1.05rem, 2vw, 1.25rem);
   line-height: 1.72;
@@ -705,6 +705,10 @@ button {
 }
 
 .language-toggle {
+  position: fixed;
+  top: 18px;
+  left: 18px;
+  z-index: 120;
   display: inline-flex;
   align-items: center;
   height: 42px;
@@ -1256,6 +1260,10 @@ button {
 }
 
 @media (max-width: 520px) {
+  .page {
+    overflow-x: hidden;
+  }
+
   .logo-placeholder {
     width: 100%;
     min-height: 86px;
@@ -1266,7 +1274,13 @@ button {
   }
 
   .site-name {
-    font-size: clamp(2.7rem, 16vw, 4.4rem);
+    font-size: clamp(2.45rem, 13.5vw, 3.35rem);
+    letter-spacing: -0.035em;
+  }
+
+  .tagline {
+    max-width: 22rem;
+    line-height: 1.55;
   }
 
   .tagline,

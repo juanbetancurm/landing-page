@@ -14,8 +14,8 @@ const AppContent = () => {
 
   return (
     <>
+      <LanguageToggle />
       <div className="utility-controls">
-        <LanguageToggle />
         <ThemeToggle theme={theme} onToggle={toggle} />
       </div>
       <Routes>
