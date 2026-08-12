@@ -4,10 +4,12 @@ import CategoryVisualIcon from "../components/CategoryVisualIcon";
 import Footer from "../components/Footer";
 import { useLanguageContext } from "../hooks/useLanguageContext";
 import dnaIcon from "../assets/icons/dna_icon.png";
+import finMathIcon from "../assets/icons/fin_math.png";
 import mazeIcon from "../assets/icons/maze_icon.png";
 
 const projectIcons = {
   dna: dnaIcon,
+  finMath: finMathIcon,
   maze: mazeIcon,
 };
 

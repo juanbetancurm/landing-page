@@ -93,6 +93,21 @@ export const projects = [
     status: "live",
     url: "https://translation.labolavs.com",
   },
+  {
+    id: "financial-mathematics-introduction",
+    title: {
+      en: "Introduction to Financial Mathematics",
+      es: "Introducción a las Matemáticas Financieras",
+    },
+    icon: "finMath",
+    description: {
+      en: "Learn the time value of money, simple and compound interest, discounts, value equations, and equivalent rates through interactive calculators, cash-flow diagrams, and solved exercises.",
+      es: "Aprende el valor del dinero en el tiempo, interés simple y compuesto, descuentos, ecuaciones de valor y tasas equivalentes mediante calculadoras interactivas, diagramas de flujo de caja y ejercicios resueltos.",
+    },
+    category: "education",
+    status: "live",
+    url: "https://finantial.labolavs.com",
+  },
 ];
 
 export const getLocalizedCategories = (language) =>
