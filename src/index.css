@@ -353,7 +353,6 @@ button {
   object-fit: contain;
   user-select: none;
   transform: rotate(var(--arrow-rotation));
-  transition: transform var(--craft-transition);
 }
 
 .arrow-icon-right {
@@ -366,16 +365,6 @@ button {
 
 .arrow-icon-left {
   --arrow-rotation: -90deg;
-}
-
-.category-chevron,
-.project-external-icon {
-  transition: transform var(--craft-transition);
-}
-
-.category-card:hover .category-chevron,
-.project-card:hover .project-external-icon {
-  transform: translateX(4px);
 }
 
 .footer,
@@ -477,6 +466,11 @@ button {
 .footer-chevron {
   width: 22px;
   height: 22px;
+}
+
+.footer-chevron img,
+.about-chevron img {
+  transition: transform 140ms ease-out;
 }
 
 .footer-panel {
@@ -581,11 +575,6 @@ button {
 .back-link-icon {
   width: 20px;
   height: 20px;
-  transition: transform var(--craft-transition);
-}
-
-.back-link:hover .back-link-icon {
-  transform: translateX(-2px);
 }
 
 .category-page {
@@ -1247,9 +1236,8 @@ button {
   .guide-help-button,
   .guide-button,
   .arrow-icon img,
-  .category-chevron,
-  .project-external-icon,
-  .back-link-icon {
+  .footer-chevron img,
+  .about-chevron img {
     transition: none;
   }
 }

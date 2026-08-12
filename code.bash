@@ -4,7 +4,7 @@ npm run build
 git status --short
 git add .
 git diff --cached --check
-git commit -m "Replace text arrows with shared icon"
+git commit -m "Replace arrow animation to 180 rotation"
 git pull --rebase origin main
 git push origin main
 
