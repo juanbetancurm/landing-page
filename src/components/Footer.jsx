@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLanguageContext } from "../hooks/useLanguageContext";
-import openIcon from "../assets/icons/open_icon.png";
+import ArrowIcon from "./ArrowIcon";
 
 const GitHubIcon = () => (
   <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -49,9 +49,10 @@ const Footer = () => {
           </span>
           <span className="footer-toggle-hint">
             <span>{t("footer.open")}</span>
-            <span className={`footer-chevron ${isOpen ? "open" : ""}`}>
-              <img src={openIcon} alt="" draggable="false" />
-            </span>
+            <ArrowIcon
+              direction={isOpen ? "down" : "up"}
+              className="footer-chevron"
+            />
           </span>
         </button>
 

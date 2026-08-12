@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { getLocalizedCategories, getLocalizedProjects } from "../data/projects";
 import CategoryVisualIcon from "../components/CategoryVisualIcon";
+import ArrowIcon from "../components/ArrowIcon";
 import Footer from "../components/Footer";
 import { useLanguageContext } from "../hooks/useLanguageContext";
 import dnaIcon from "../assets/icons/dna_icon.png";
@@ -41,7 +42,8 @@ const CategoryPage = () => {
     <div className="page category-page">
       <nav className="category-nav">
         <Link to="/" className="back-link">
-          <span aria-hidden="true">{"<"}</span> {t("categoryPage.backHome")}
+          <ArrowIcon direction="left" className="back-link-icon" />
+          {t("categoryPage.backHome")}
         </Link>
       </nav>
 
@@ -89,7 +91,7 @@ const CategoryPage = () => {
                 {t("categoryPage.live")}
               </span>
             </div>
-            <span className="project-external-icon">{"->"}</span>
+            <ArrowIcon direction="right" className="project-external-icon" />
           </a>
         ))}
 

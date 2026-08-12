@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLanguageContext } from "../hooks/useLanguageContext";
+import ArrowIcon from "./ArrowIcon";
 
 const AboutOlav = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,7 +15,10 @@ const AboutOlav = () => {
       >
         <span className="about-toggle-icon">i</span>
         <span>{t("aboutOlav.title")}</span>
-        <span className={`about-chevron ${isOpen ? "open" : ""}`}>v</span>
+        <ArrowIcon
+          direction={isOpen ? "up" : "down"}
+          className="about-chevron"
+        />
       </button>
       {isOpen && (
         <div className="about-content">

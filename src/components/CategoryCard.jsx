@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import CategoryVisualIcon from "./CategoryVisualIcon";
+import ArrowIcon from "./ArrowIcon";
 
 const CategoryCard = ({ category }) => {
   const hasCustomIcon = Boolean(category.cardIcon);
@@ -22,7 +23,7 @@ const CategoryCard = ({ category }) => {
         <h2 className="category-name">{category.name}</h2>
         <p className="category-description">{category.description}</p>
       </div>
-      <span className="category-chevron">{">"}</span>
+      <ArrowIcon direction="right" className="category-chevron" />
     </Link>
   );
 };
